@@ -1,0 +1,5 @@
+domain,model,outer_seed,fold,init_seed,best_epoch,train_seconds,latency_median_ms,latency_p95_ms,params,protocol
+time,CNN-GRU,2026,0,33,6,1.6734609190000356,0.6924239999999999,0.9960163000000002,180418,CPU batch=1; 5 torch threads; inference_mode; 100 warm-up + 300 timed forward passes; excludes preprocessing/I-O
+time,CNN-LSTM,2026,0,33,13,1.7998892199998409,0.6395660000000001,1.6955240500000002,218626,CPU batch=1; 5 torch threads; inference_mode; 100 warm-up + 300 timed forward passes; excludes preprocessing/I-O
+frequency,CNN-GRU,2026,0,33,4,0.774954629000149,0.9231990000000001,1.3886213,41826,CPU batch=1; 5 torch threads; inference_mode; 100 warm-up + 300 timed forward passes; excludes preprocessing/I-O
+frequency,CNN-LSTM,2026,0,33,5,0.46873502399989775,0.7039255,1.10856,53282,CPU batch=1; 5 torch threads; inference_mode; 100 warm-up + 300 timed forward passes; excludes preprocessing/I-O

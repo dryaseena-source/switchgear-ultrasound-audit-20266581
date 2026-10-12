@@ -1,0 +1,13 @@
+cff-version: 1.2.0
+title: "Supplementary Reproducibility Artifact S1 for Auditing Leakage and Label Conflict in Ultrasound-Based Switchgear Arc-Fault Diagnosis"
+message: "If you use this artifact, please cite the associated manuscript."
+type: dataset
+authors:
+  - family-names: Ahmed
+    given-names: Firas Omar
+  - family-names: Alsumaidaee
+    given-names: Yaseen Ahmed
+  - family-names: Yaseen
+    given-names: Abdulelah Hameed
+version: "1.0-review2"
+date-released: 2026-10-12

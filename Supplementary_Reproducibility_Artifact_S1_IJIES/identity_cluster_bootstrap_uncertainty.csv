@@ -1,0 +1,7 @@
+domain,model,metric,point,ci95_low,ci95_high,bootstrap_replicates,bootstrap_seed,cluster_unit
+time,CNN-GRU,accuracy,0.6073059360730594,0.5431818181818182,0.6713623347650918,10000,909,exact SHA-256 identity group; OOF probabilities averaged over two repeats before classification
+time,CNN-GRU,macro_f1,0.5064465408805031,0.45603858332257535,0.5551355767969575,10000,909,exact SHA-256 identity group; OOF probabilities averaged over two repeats before classification
+time,CNN-GRU,arc_recall,0.6296296296296297,0.4444444444444444,0.7966167902542372,10000,909,exact SHA-256 identity group; OOF probabilities averaged over two repeats before classification
+frequency,CNN-GRU,accuracy,0.5625,0.46710526315789475,0.6580645161290323,10000,909,exact SHA-256 identity group; OOF probabilities averaged over two repeats before classification
+frequency,CNN-GRU,macro_f1,0.5568919132774173,0.46083611305535876,0.6475729561721194,10000,909,exact SHA-256 identity group; OOF probabilities averaged over two repeats before classification
+frequency,CNN-GRU,arc_recall,0.6792452830188679,0.4917963323145318,0.86,10000,909,exact SHA-256 identity group; OOF probabilities averaged over two repeats before classification

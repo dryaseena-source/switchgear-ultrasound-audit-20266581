@@ -1,0 +1,5 @@
+domain,policy,records,arc_records,nonarc_records,exact_groups,arc_groups,nonarc_groups
+frequency,retain_conflicts_grouped,160,53,107,98,33,73
+frequency,exclude_exact_cross_label_conflict_groups,136,39,97,90,25,65
+time,retain_conflicts_grouped,438,54,384,197,33,195
+time,exclude_exact_cross_label_conflict_groups,319,3,316,166,2,164

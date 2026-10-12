@@ -1,0 +1,7 @@
+domain,threshold_abs_corr,candidate_pairs,groups,cross_label_components,largest_group
+time,0.999,451,197,31,18
+time,0.9999,451,197,31,18
+time,0.99999,451,197,31,18
+frequency,0.999,81,94,9,4
+frequency,0.9999,81,94,9,4
+frequency,0.99999,76,98,8,4

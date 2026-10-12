@@ -1,0 +1,138 @@
+{
+  "physical_sampling_rate_hz": 11025,
+  "initial_time_pipeline": {
+    "record_length": 20001,
+    "librosa_sr_argument": 20001,
+    "n_fft": 2048,
+    "hop_length": 512,
+    "n_mels": 128,
+    "power": 2.0,
+    "output_shape": "40x128",
+    "label_specific_arc_scaling": "/255 before feature extraction",
+    "arc_bootstrap": "with replacement before split",
+    "split_seeds": [
+      21,
+      20
+    ],
+    "center": true,
+    "pad_mode": "constant",
+    "normalization": "label-specific arcing-only /255 before feature extraction; no fold-fitted class-neutral scaler in the legacy reproduction"
+  },
+  "initial_frequency_pipeline": {
+    "record_length": 10001,
+    "librosa_sr_argument": 10001,
+    "n_fft": 2048,
+    "hop_length": 512,
+    "n_mels": 128,
+    "power": 2.0,
+    "output_shape": "20x128",
+    "label_specific_arc_scaling": "/255 before feature extraction",
+    "arc_bootstrap": "with replacement before split",
+    "split_seeds": [
+      0,
+      0
+    ],
+    "center": true,
+    "pad_mode": "constant",
+    "normalization": "label-specific arcing-only /255 before feature extraction; no fold-fitted class-neutral scaler in the legacy reproduction"
+  },
+  "corrected_time_representation": {
+    "input": "20,001-point waveform",
+    "sampling_rate_hz": 11025,
+    "n_fft": 2048,
+    "hop_length": 512,
+    "center": true,
+    "pad_mode": "constant",
+    "n_mels": 128,
+    "power": 2.0,
+    "compression": "log1p",
+    "shape": "40x128",
+    "normalization": "RobustScaler fitted on training frames only, per Mel band; validation/test transformed with training statistics"
+  },
+  "corrected_frequency_representation": {
+    "input": "frequency-domain record stored as a 10,001-bin one-sided FFT magnitude",
+    "frequency_axis": "numpy.fft.rfftfreq(20001,1/11025)",
+    "power": "magnitude squared",
+    "mel_mapping": "128 triangular Mel bands over 0-5512.5 Hz on exact frequency axis",
+    "compression": "log1p",
+    "shape": "128x1; Mel bands are sequence positions, not time frames",
+    "padding": "none",
+    "second_STFT": false,
+    "normalization": "RobustScaler fitted on training records only across 128 bands"
+  },
+  "corrected_fixed_split": {
+    "time_selection_seed": 2260,
+    "frequency_selection_seed": 2195,
+    "selection": "group-safe 70/15/15 candidate chosen only for size/class balance, never model performance"
+  },
+  "outer_cv": {
+    "method": "StratifiedGroupKFold",
+    "n_splits": 5,
+    "repeats": 2,
+    "group": "SHA-256 exact record identity",
+    "seeds": [
+      2026,
+      2027
+    ]
+  },
+  "inner_validation": {
+    "method": "StratifiedGroupKFold",
+    "n_splits": 5,
+    "seed_formula": "8000 + 100*repeat + fold",
+    "used": "first inner split; fit preprocessing on inner-train only; checkpoint by minimum inner-validation weighted cross-entropy"
+  },
+  "model_initialization": {
+    "outer_runs_seed_formula": "5000 + 100*repeat + fold",
+    "fixed_split_sensitivity_seeds": [
+      11,
+      33,
+      55
+    ]
+  },
+  "class_imbalance": {
+    "rule": "weighted cross-entropy",
+    "class_weight": "n_train/(2*n_class)",
+    "resampling": "none in validation or test"
+  },
+  "training": {
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "batch_size": 32,
+    "max_epochs": 25,
+    "early_stopping_patience": 4
+  },
+  "uncertainty": {
+    "method": "identity-cluster percentile bootstrap on pooled OOF predictions after averaging probabilities over the two repetitions",
+    "replicates": 10000,
+    "seed": 909
+  },
+  "near_duplicate_sensitivity": {
+    "similarity": "absolute centered cosine/Pearson correlation on full stored record (log1p magnitude for frequency)",
+    "thresholds": [
+      0.999,
+      0.9999,
+      0.99999
+    ],
+    "expanded_group_threshold": 0.9999
+  },
+  "timing_protocol": {
+    "device": "CPU",
+    "torch_threads": 5,
+    "batch_size": 1,
+    "warmup_forward_passes": 100,
+    "timed_forward_passes": 300,
+    "reported": "median and 95th percentile; inference_mode; no data-loading time"
+  },
+  "conflict_policy": {
+    "primary": "retain contradictory exact groups but keep whole identity group in one partition",
+    "sensitivity": "exclude every exact group containing both labels; policy predeclared from identity+label only, not performance"
+  },
+  "_artifact_metadata": {
+    "artifact_name": "Supplementary Reproducibility Artifact S1",
+    "artifact_version": "1.0-final-review2",
+    "manuscript_version": "18-page second-round red-font revision formatted with IJIES template Ver. 2025.5.18; expanded figures and literature restored",
+    "manuscript_title": "Auditing Leakage and Label Conflict in Ultrasound-Based Switchgear Arc-Fault Diagnosis: A Group-Aware CNN-GRU Evaluation",
+    "repository_policy": "Public repository should mirror extracted S1 files; source MAT/raw data/notebooks excluded unless redistribution permission is confirmed.",
+    "terminology": "Main manuscript terms: Time Domain and Frequency Domain; stored one-sided FFT spectrum is only the storage/representation description for frequency-domain records."
+  }
+}
